@@ -7,7 +7,7 @@ const tester = {}
 tester.settings = {};
 
 
-tester.testProcedure = function()
+tester.testProcedure =  function()
 {
     const procedureName= "ExpensesPerCategory";
     console.log(`will do procedure ${procedureName}`);
@@ -25,6 +25,8 @@ tester.testProcedure = function()
 
         console.log(results);
     })
+
+    return c;
 }
 
 tester.testQuery =  function(query){
@@ -44,7 +46,7 @@ tester.testQuery =  function(query){
 
     })
 
-
+    return p;
 
 }
 
@@ -73,6 +75,8 @@ tester.testConnect = function(showConnObj){
          console.log(conn);
     });
     
+
+    return testConnect;
     
 }
 

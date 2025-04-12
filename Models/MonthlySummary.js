@@ -1,4 +1,4 @@
-function Summary()
+function MonthlySummary()
 {
     let self = this;
 
@@ -9,3 +9,4 @@ function Summary()
 }
 
 
+export default MonthlySummary;
