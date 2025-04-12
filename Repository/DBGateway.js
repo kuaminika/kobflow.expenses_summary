@@ -27,6 +27,27 @@ function MySQL_DBGateway(args)
     //TODO: enhance this by wrapping calle to connect --- > urgent:low, important: medium
     self.testConnect = connect;
 
+    self.doProcedure = function(procedureName,paramArray)
+    {
+        const connectionP =  connect();
+        let conn;
+
+        const executionPromise = connectionP.then(c=>{
+            conn = c;
+            const executionP  =  conn.execute(`CALL ${procedureName}(?)`,paramArray);
+            return executionP;          
+         })
+       
+        const promiseWithResults =  executionPromise.then(result=>{
+                 
+            return  conn.end().then(()=>{
+                                               return result[0][0];
+                                       });
+        });
+
+        return promiseWithResults;
+        
+    }
 
     self.doQuery =    function(query_args){
      
@@ -39,7 +60,7 @@ function MySQL_DBGateway(args)
                     connectionP.then(conn=>{
                        let qP =  conn.query(queryStr);
                     
-                        qP.then(acc);
+                        qP.then(results =>acc(results[0]));
                         qP.catch(rej);
                     
                     

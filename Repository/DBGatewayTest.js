@@ -7,6 +7,26 @@ const tester = {}
 tester.settings = {};
 
 
+tester.testProcedure = function()
+{
+    const procedureName= "ExpensesPerCategory";
+    console.log(`will do procedure ${procedureName}`);
+ 
+    let args = new DBGatewayArgs(tester.settings);
+    let dbgtw = new MySQL_DBGateway(args);
+
+    let c =  dbgtw.doProcedure(procedureName,["year"]);
+
+    c.catch(console.error);
+
+    c.then(results=>{
+
+        console.log("procedure call was succesful. here's the result:");
+
+        console.log(results);
+    })
+}
+
 tester.testQuery =  function(query){
 
 
