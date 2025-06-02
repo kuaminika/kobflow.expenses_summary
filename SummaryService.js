@@ -13,6 +13,15 @@ function SummaryService(repository)
 
         return results;
     }
+    self.getPreviousMonthlySummary = async function()
+    {
+        const today = new Date();
+        let monthNo = today.getMonth();
+        const periodId = `${today.getFullYear()}${monthNo.toString().padStart(2,'0')}`
+        let results = await   self.getSummaryForMonth(periodId);
+
+        return results;
+    }
 
     self.getSummaryForMonth = async function (periodId)
     {
