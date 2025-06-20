@@ -55,10 +55,11 @@ function MySQL_DBGateway(args)
         const p = new Promise((acc,rej)=>{
           
                 try{
-                    const {queryStr} = query_args;
+                    const {queryStr,params } = query_args;
+ 
                     const connectionP =  connect();
                     connectionP.then(conn=>{
-                       let qP =  conn.query(queryStr);
+                       let qP =   conn.execute(queryStr, params);//conn.query(queryStr);
                     
                         qP.then(results =>acc(results[0]));
                         qP.catch(rej);

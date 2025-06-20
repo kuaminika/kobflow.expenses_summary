@@ -1,7 +1,7 @@
 // import express from "express";
 import Container from "./Container.js";
 import DBGatewayTest  from "./Repository/DBGatewayTest.js"
-import RepositoryTester from "./Repository/ExpenseSummaryRepository.js";
+import RepositoryTester from "./Repository/IncomeSummaryRepositoryTester.js";
 import SummaryServiceTester from "./SummaryServiceTester.js";
 import dotenv from 'dotenv';
 dotenv.config();
@@ -20,6 +20,8 @@ const dbSettings = {host,user,database,password};
 
 const container = new Container(dbSettings);
 
+ 
+
 // dbGatewayTester.settings = dbSettings;
 // console.log(dbGatewayTester);
 // await dbGatewayTester.testConnect();
@@ -31,22 +33,23 @@ const container = new Container(dbSettings);
 // dbGatewayTester.testProcedure();
 
 // const rpTstr = new RepositoryTester(dbSettings);
+// console.log(rpTstr)
 
 
-// await rpTstr.testGettingForMonths();
-// console.log(line);
+//  await rpTstr.testGettingForMonths();
+//  console.log(line);
 
-// await rpTstr.testGettingForCurrentMonth();
+//  await rpTstr.testGettingForCurrentMonth();
 
 
  
-const st = new SummaryServiceTester(container);
+const st = new SummaryServiceTester(container,true);
 
 
-console.log(line);
+ console.log(line);
 
-await st.testCurrentMonth();
+ await st.testCurrentMonth();
 
-console.log(line);
+// console.log(line);
 
-st.testPreviousMonth();
+// st.testPreviousMonth();

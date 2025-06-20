@@ -1,6 +1,6 @@
 import MonthlySummary from "../Models/MonthlySummary.js";
 import SummryListItem from "../Models/SummaryListItem.js";
-function Repository(dbgateWay)
+function ExpenseSummaryRepository(dbgateWay)
 {
     const self = this;
     
@@ -37,4 +37,4 @@ function Repository(dbgateWay)
     }
 }
 
-export default Repository;
+export default ExpenseSummaryRepository;

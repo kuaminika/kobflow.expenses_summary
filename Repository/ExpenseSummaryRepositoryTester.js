@@ -1,4 +1,4 @@
-import Repository from "./Repository.js"
+import Repository from "./ExpenseSummaryRepositoryTester.js"
 import DBGateway from "./DBGateway.js"
 
 const {MySQL_DBGateway,DBGatewayArgs}= DBGateway;
@@ -7,7 +7,7 @@ function RepositoryTester(settings)
 {
     let args = new DBGatewayArgs(settings);
     let dbgtw = new MySQL_DBGateway(args);
-    let repository = new Repository(dbgtw);
+    let repository = new ExpenseSummaryRepository(dbgtw);
 
     const self = this;
 
