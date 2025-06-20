@@ -23,8 +23,16 @@ function SummaryService(repository)
         return results;
     }
 
-    self.getSummaryForMonth = async function (periodId)
+    self.getSummaryForMonth = async function (periodId,user_id)
     {
+        if(repository.constructor.name.indexOf("Income") >= 0 )
+        {
+            let results = await   repo.getAllIncomesForMonth({monthId:periodId,user_id});
+
+            return results;rn 
+        }
+
+
         let results = await   repo.getAllExpensesForMonth(periodId);
 
         return results;
