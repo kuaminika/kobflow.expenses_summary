@@ -1,11 +1,12 @@
 
 import SummaryService from "./SummaryService.js";
 
-function SummaryServiceTester(container)
+function SummaryServiceTester(container,incomeMode)
 {
     const self = this;
+    const user_id = 1;
 
-    const repo = container.getArgsForService();
+    const repo =!incomeMode? container.getArgsForService({user_id}): container.getArgsForService_Income({user_id});
     const service = new SummaryService(repo);
 
     self.testCurrentMonth =function()

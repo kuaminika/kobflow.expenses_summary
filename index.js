@@ -10,8 +10,6 @@ app.use(express.json());
 console.log(configs);
 app.use(cors()); // No restrictions
 const container = new Container(configs);
-const repo = container.getArgsForService();
-const service = new SummaryService(repo);
 
 app.get('/', (req, res) => {
 
@@ -31,6 +29,9 @@ app.get('/', (req, res) => {
 
 app.get("/api/summary/latestMonth",async (req,res)=>{
   
+      //TODO: add a different to identify the user
+  const repo = container.getArgsForService({user_id:1});
+  const service = new SummaryService(repo);
   let result = await  service.getCurrentMonthlySummary();
    res.send(result);
 });
@@ -38,10 +39,34 @@ app.get("/api/summary/latestMonth",async (req,res)=>{
 
 app.get("/api/summary/previousMonth",async (req,res)=>{
   
+      //TODO: add a different to identify the user
+  const repo = container.getArgsForService({user_id:1});
+  const service = new SummaryService(repo);
   let result = await  service.getPreviousMonthlySummary();
    res.send(result);
 });
 
+
+
+app.get("/api/summary/previousMonth_income",async (req,res)=>{
+  
+      //TODO: add a different to identify the user
+      const repo = container.getArgsForService_Income({user_id:1});
+    const service = new SummaryService(repo);
+    let result = await  service.getPreviousMonthlySummary();
+     res.send(result);
+  });
+  
+  
+
+  app.get("/api/summary/latestMonth_income",async (req,res)=>{
+      //TODO: add a different to identify the user
+      const repo = container.getArgsForService_Income({user_id:1});
+      const service = new SummaryService(repo);
+      let result = await  service.getCurrentMonthlySummary();
+       res.send(result);
+    });
+    
 
 
 app.listen(configs.port, () => {
