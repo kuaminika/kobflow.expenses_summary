@@ -27,6 +27,7 @@ function SummaryService(repository)
     {
         if(repository.constructor.name.indexOf("Income") >= 0 )
         {
+            console.log({monthId:periodId,user_id});
             let results = await   repo.getAllIncomesForMonth({monthId:periodId,user_id});
 
             return results;rn 

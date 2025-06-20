@@ -1,7 +1,7 @@
 // import express from "express";
 import Container from "./Container.js";
 import DBGatewayTest  from "./Repository/DBGatewayTest.js"
-import RepositoryTester from "./Repository/RepositoryTester.js";
+import RepositoryTester from "./Repository/ExpenseSummaryRepository.js";
 import SummaryServiceTester from "./SummaryServiceTester.js";
 import dotenv from 'dotenv';
 dotenv.config();
