@@ -40,6 +40,13 @@ function SummaryService(repository)
     }
 
 
+    self.getRecordsForMonthAndCategory = async function(periodId,user_id,category_id)
+    {
+           let results = await   repo.listRecordsForMonthAndCategory({monthId:periodId,user_id,category_id});
+
+        return results;
+    }
+
 }
 
 
