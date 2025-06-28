@@ -1,5 +1,6 @@
 
 import DBGateway from "./Repository/DBGateway.js"
+import ExpenseSummaryQueryHolder from "./Repository/ExpenseSummaryQueryHolder.js";
 import Repository from "./Repository/ExpenseSummaryRepository.js";
 import IncomeSummaryRepository from "./Repository/IncomeSummaryRepository.js";
 import IncommeSummaryQueryHolder from "./Repository/IncommeSummaryQueryHolder.js";
@@ -31,8 +32,11 @@ function Container(settings)
 
     self.getArgsForService = function({user_id})
     {
-        let repoArg = self.getArgsForRepository();
-        let repo = new Repository(repoArg);
+       
+        let args = new DBGatewayArgs(settings);
+        let dbgtw = new MySQL_DBGateway(args);
+        let  queryHolder = new ExpenseSummaryQueryHolder();
+        let repo = new Repository({dbgateWay: dbgtw, user_id : user_id,queryHolder});
         return repo;
     }
 }

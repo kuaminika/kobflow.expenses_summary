@@ -49,4 +49,8 @@ await st.testCurrentMonth();
 
 console.log(line);
 
-st.testPreviousMonth();
+await st.testPreviousMonth();
+
+console.log(line);
+
+st.testAllRecordsForMonthAndCategory1();
