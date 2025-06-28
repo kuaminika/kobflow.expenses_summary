@@ -67,6 +67,23 @@ app.get("/api/summary/previousMonth_income",async (req,res)=>{
        res.send(result);
     });
     
+  
+
+  app.get("/api/listingPerCategory/:monthId/:categoryId",async (req,res)=>{
+   
+  const user_id = 1;
+
+  const repo = container.getArgsForService({user_id});
+  const service = new SummaryService(repo);
+  service
+      const {monthId,categoryId} = req.params;
+   const result =   await  service.getRecordsForMonthAndCategory(monthId,user_id,categoryId);
+
+
+
+       res.send(result);
+    });
+    
 
 
 app.listen(configs.port, () => {
