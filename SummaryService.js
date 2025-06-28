@@ -18,7 +18,7 @@ function SummaryService(repository)
         const today = new Date();
         let monthNo = today.getMonth();
         const periodId = `${today.getFullYear()}${monthNo.toString().padStart(2,'0')}`
-        let results = await   self.getSummaryForMonth(periodId);
+        let results = await   self.getSummaryForMonth({monthId:periodId,user_id});
 
         return results;
     }
@@ -34,11 +34,18 @@ function SummaryService(repository)
         }
 
 
-        let results = await   repo.getAllExpensesForMonth(periodId);
+        let results = await   repo.getAllExpensesForMonth({monthId:periodId,user_id});
 
         return results;
     }
 
+
+    self.getRecordsForMonthAndCategory = async function(periodId,user_id,category_id)
+    {
+           let results = await   repo.listRecordsForMonthAndCategory({monthId:periodId,user_id,category_id});
+
+        return results;
+    }
 
 }
 
