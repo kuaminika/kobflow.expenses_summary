@@ -42,7 +42,14 @@ app.get("/api/summary/previousMonth",async (req,res)=>{
       //TODO: add a different to identify the user
   const repo = container.getArgsForService({user_id:1});
   const service = new SummaryService(repo);
-  let result = await  service.getPreviousMonthlySummary();
+  const today = new Date();
+   let monthNo = today.getMonth();
+    const periodId = `${today.getFullYear()}${monthNo.toString().padStart(2,'0')}`
+        
+        console.log("  self.testPreviousMonth")
+  let result =     await  service.getSummaryForMonth(periodId);
+
+ // let result = await  service.getPreviousMonthlySummary();
    res.send(result);
 });
 
