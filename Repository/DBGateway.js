@@ -6,7 +6,7 @@ import DBGatewayArgs from "./DBGatewayArgs.js";
 function MySQL_DBGateway(args)
 {
     
-    const {host , user ,database,password} = args;
+    const {host , user ,database,password, dbport} = args;
     const self = this;
 
     function connect()
@@ -14,7 +14,9 @@ function MySQL_DBGateway(args)
     {
  
         const p = new Promise((acc,rej)=>{
-            const connection =  mysql.createConnection( {host , user ,database,password});
+
+            console.log("will connect",{host , user ,database,password,dbport})
+            const connection =  mysql.createConnection( {host , user ,database,password,port:dbport});
 
             connection.catch(rej);
             connection.then(acc);
