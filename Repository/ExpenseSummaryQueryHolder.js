@@ -102,7 +102,7 @@ function ExpenseSummaryQueryHolder()
                 JOIN Category c ON e.category_id = c.id
                 JOIN Currency cu ON e.currency_id = cu.id        
         ) t
-    group by year_id,month_id, currency,user_id, category `;
+    group by year_id,month_id, currency,user_id, category,category_id `;
 
 
     }
