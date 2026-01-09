@@ -54,4 +54,8 @@ await st.testPreviousMonth();
 
 console.log(line);
 
-st.testAllRecordsForMonthAndCategory1();
+await st.testAllRecordsForMonthAndCategory1();
+
+console.log(line);
+
+await st.testDateRange().catch(console.error);

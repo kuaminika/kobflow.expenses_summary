@@ -4,7 +4,7 @@ import ExpenseSummaryQueryHolder from "./Repository/ExpenseSummaryQueryHolder.js
 import Repository from "./Repository/ExpenseSummaryRepository.js";
 import IncomeSummaryRepository from "./Repository/IncomeSummaryRepository.js";
 import IncommeSummaryQueryHolder from "./Repository/IncommeSummaryQueryHolder.js";
- 
+import {LogTool_Console,LogFactory} from "./Utils/LogTool_Console.js";
  
 
 const {MySQL_DBGateway,DBGatewayArgs}= DBGateway;
@@ -15,7 +15,6 @@ function Container(settings)
 
     self.getArgsForRepository = function()
     {
-        
         let args = new DBGatewayArgs(settings);
         let dbgtw = new MySQL_DBGateway(args);
         return dbgtw;
@@ -26,7 +25,8 @@ function Container(settings)
         let args = new DBGatewayArgs(settings);
         let dbgtw = new MySQL_DBGateway(args);
         let  queryHolder = new IncommeSummaryQueryHolder();
-        let repository = new IncomeSummaryRepository({dbgateWay: dbgtw, user_id : user_id,queryHolder});
+        let logTool = new LogTool_Console({logFactory:new LogFactory({application:"Kobflow",service:"Summary"})});
+        let repository = new IncomeSummaryRepository({dbgateWay: dbgtw, user_id : user_id,queryHolder,logTool});
         return repository;
     };
 
@@ -36,8 +36,11 @@ function Container(settings)
         let args = new DBGatewayArgs(settings);
         let dbgtw = new MySQL_DBGateway(args);
         let  queryHolder = new ExpenseSummaryQueryHolder();
-        let repo = new Repository({dbgateWay: dbgtw, user_id : user_id,queryHolder});
-        return repo;
+        let logFactory = new LogFactory({application:"Kobflow",service:"Summary"});
+        console.log("user:",user_id)
+        let logTool = new LogTool_Console({logFactory});
+        let repository = new Repository({dbgateWay: dbgtw, user_id : user_id,queryHolder,logTool});
+        return {repository, logTool: new LogTool_Console({logFactory}) };
     }
 }
 

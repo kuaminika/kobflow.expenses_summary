@@ -1,5 +1,6 @@
 import configs from "./configs.js";
 import Container from "./Container.js";
+import DateParser from "./Utils/DateParser.js";
 import SummaryService from "./SummaryService.js";
 import express from 'express';
 import axios from 'axios';
@@ -10,6 +11,7 @@ app.use(express.json());
 console.log(configs);
 app.use(cors()); // No restrictions
 const container = new Container(configs);
+const dateParser = new DateParser();
 
 app.get('/', (req, res) => {
 
@@ -54,6 +56,25 @@ app.get("/api/summary/previousMonth",async (req,res)=>{
 });
 
 
+
+app.get("/api/summary/range/:user_id/:date_id1/:date_id2",async (req,res)=>{
+
+    const {date_id1,date_id2,user_id} = req.params;
+    
+ 
+      const service = new SummaryService(container.getArgsForService({user_id}));
+   
+    let dateA = dateParser.parseYYYYMMDD(date_id1);
+    let dateB = dateParser.parseYYYYMMDD(date_id2);
+    let userId = user_id;
+    let result =await  service.getSummaryForRange({dateA,dateB,userId});
+
+
+     res.send(result);
+
+
+
+});
 
 app.get("/api/summary/previousMonth_income",async (req,res)=>{
   
