@@ -23,6 +23,7 @@ jobs:
             echo "DEFAULT_ORG_ID: ${{ vars.DEFAULT_ORG_ID }}"
             echo "SERVICE_NAME: ${{ vars.SERVICE_NAME }}"
             echo "APPLICATION_NAME: ${{ vars.APPLICATION_NAME }}"
+            echo "APPLICATION_NAME: ${{ vars.SERVER_USER }}"
            
     
       - name: Deploy via SSH
