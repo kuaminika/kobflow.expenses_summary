@@ -28,7 +28,11 @@ jobs:
             echo "SERVER_USER: ${{ vars.SERVER_USER }}"
             echo "SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}"
             echo "github.ref_name:${{ github.ref_name }} "
-           
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+           fetch-depth: 0         
     
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
