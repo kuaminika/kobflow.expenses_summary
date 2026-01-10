@@ -32,10 +32,10 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ vars.SERVER_HOST }}
-          port: ${{ vars.SERVER_SSH_PORT }}
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
           username: ${{ vars.SERVER_USER   }}
-          key: ${{ vars.SERVER_SSH_KEY }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
 
           script: |
             # Determine environment (DEV for dev* branches)
