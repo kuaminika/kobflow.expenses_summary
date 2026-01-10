@@ -50,7 +50,7 @@ jobs:
             cd ${{ vars.ENV_DIR }}
 
             echo "Pulling latest code"
-            git fetch all 
+            git fetch --all 
             git checkout ${{ github.ref_name }} || git checkout -b ${{ github.ref_name }} --track origin/${{ github.ref_name }}
             git pull origin ${{ github.ref_name }}
 
