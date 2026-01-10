@@ -23,16 +23,19 @@ jobs:
             echo "DEFAULT_ORG_ID: ${{ vars.DEFAULT_ORG_ID }}"
             echo "SERVICE_NAME: ${{ vars.SERVICE_NAME }}"
             echo "APPLICATION_NAME: ${{ vars.APPLICATION_NAME }}"
-            echo "APPLICATION_NAME: ${{ vars.SERVER_USER }}"
+            echo "SERVER_HOST: ${{  vars.SERVER_HOST }}"
+            echo "SERVER_SSH_PORT: ${{ vars.SERVER_SSH_PORT }}"
+            echo "SERVER_USER: ${{ vars.SERVER_USER }}"
+            echo "SERVER_SSH_KEY: ${{ vars.SERVER_SSH_KEY }}"
            
     
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          port: ${{ secrets.SERVER_SSH_PORT }}
-          username: ${{ secrets.SERVER_USER   }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
+          host: ${{ vars.SERVER_HOST }}
+          port: ${{ vars.SERVER_SSH_PORT }}
+          username: ${{ vars.SERVER_USER   }}
+          key: ${{ vars.SERVER_SSH_KEY }}
 
           script: |
             # Determine environment (DEV for dev* branches)
