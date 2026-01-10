@@ -23,10 +23,11 @@ jobs:
             echo "DEFAULT_ORG_ID: ${{ vars.DEFAULT_ORG_ID }}"
             echo "SERVICE_NAME: ${{ vars.SERVICE_NAME }}"
             echo "APPLICATION_NAME: ${{ vars.APPLICATION_NAME }}"
-            echo "SERVER_HOST: ${{  vars.SERVER_HOST }}"
-            echo "SERVER_SSH_PORT: ${{ vars.SERVER_SSH_PORT }}"
+            echo "SERVER_HOST: ${{  secrets.SERVER_HOST }}"
+            echo "SERVER_SSH_PORT: ${{ secrets.SERVER_SSH_PORT }}"
             echo "SERVER_USER: ${{ vars.SERVER_USER }}"
-            echo "SERVER_SSH_KEY: ${{ vars.SERVER_SSH_KEY }}"
+            echo "SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}"
+            echo "github.ref_name:${{ github.ref_name }} "
            
     
       - name: Deploy via SSH
